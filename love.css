@@ -129,3 +129,11 @@ img.gopi
 	-webkit-border-radius:30px;
 	-o-border-radius:30px;
 }
+
+#gopi
+{
+	postion:absolute;
+	float:right;
+	z-index:100;
+	width:15%;
+}

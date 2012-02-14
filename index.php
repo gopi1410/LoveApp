@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Love App</title>
+<link rel="icon" href="fav.jpg" />
 <style type="text/css">
 body
 {
