@@ -6,7 +6,7 @@ if(!isset($_GET['id']))
 	header("Location: index.php");
 }
 
-$sql="SELECT * FROM ".$table." WHERE link='".$_GET['id']."'";
+$sql="SELECT * FROM ".$table." WHERE link='".mysql_real_escape_string($_GET['id'])."'";
 $result=mysql_query($sql,$con) or die(mysql_error());
 $numrows=mysql_num_rows($result);
 if($numrows==1)
@@ -16,6 +16,7 @@ if($numrows==1)
 	$to=$row['to'];
 	$image=$row['image'];
 	$msg=$row['message'];
+	$audio=$row['audio'];
 }
 else
 {
@@ -31,6 +32,7 @@ mysql_close($con);
     <meta name="description" content="Love App" />
     <meta name="keywords" content="Gopi Ramena IITK" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="fav.jpg" />
     <script type="text/javascript" src="d3.min.js"></script>
     <script type="text/javascript" src="love.js"></script>
     <script type="text/javascript" src="shower.js"></script>
@@ -39,9 +41,16 @@ mysql_close($con);
     </style>
   </head>
   <body>
-  <div id="gopi" style="postion:absolute; float:right; z-index:100; width:15%;">
-	<b>&copy; 2012 |</b> <a href="https://www.facebook.com/gopi1410"><b>Gopi Ramena</b></a>
-  </div>  
+  <div style="display:none;">
+	<audio autoplay="autoplay" loop="loop">
+  	<source src="http://home.iitk.ac.in/~gopi/audio/song.mp3" type="audio/mpeg" />
+	Your browser does not support the audio element.
+	</audio>
+  </div>
+  
+  <div id="gopi">
+	<b>&copy; 2012 |</b> <a href="https://www.facebook.com/gopi1410" target="_blank"><b>Gopi Ramena</b></a>
+  </div>
   
   <div id="header" align="center" style="margin-left:15%;">
   <font size="5">Dedicated to <b><?php echo $to; ?></b> from <b><?php echo $from; ?></b></font>
@@ -62,10 +71,9 @@ mysql_close($con);
       </div>
     </div>
     <div id="footer">
-	  HOVER OVER THE CIRCLES ABOVE.<br/>
+	  HOVER OVER THE CIRCLES ABOVE. <br/>
       <?php echo $msg; ?>
     </div>
-	
     <script type="text/javascript">
 
       if(/MSIE [3-8]/i.test(navigator.userAgent)) {
