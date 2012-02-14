@@ -2,9 +2,9 @@
 
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpassword = "googleme";
-$database = "loveapp";
-$table = "`loveapp`.`love`";
+$dbpassword = ""; //enter password here
+$database = "loveapp"; //modify the database name
+$table = "`loveapp`.`love`"; //modify table name
 $defaultPage="index.php";
 
 ?>
